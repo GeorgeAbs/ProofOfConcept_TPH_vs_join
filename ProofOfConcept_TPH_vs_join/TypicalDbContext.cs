@@ -7,8 +7,7 @@ namespace ProofOfConcept_TPH_vs_2_queries
     {
         public TypicalDbContext()
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+           
         }
 
         public DbSet<EntityType> EntityTypes { get; set; } = null!;
@@ -25,10 +24,10 @@ namespace ProofOfConcept_TPH_vs_2_queries
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.HasDefaultSchema("queries_2");
+            modelBuilder.HasDefaultSchema("join");
 
             modelBuilder.Entity<EntityType>()
-                .HasIndex(x => x.Name)
+                .HasIndex(x => x.Type)
                 .IsUnique();
         }
 
@@ -41,7 +40,7 @@ namespace ProofOfConcept_TPH_vs_2_queries
         {
             for (int i = 0; i < 4; i++)
             {
-                var entityType = new EntityType { Name = $"Entity type name {i}" };
+                var entityType = new EntityType { Type = i.ToString(), Name = i.ToString() };
 
                 switch (i)
                 {
@@ -63,5 +62,5 @@ namespace ProofOfConcept_TPH_vs_2_queries
 
             await SaveChangesAsync();
         }
-    }
+    }//EntityFrameworkCore\Add-Migration test_join -Context TypicalDbContext
 }

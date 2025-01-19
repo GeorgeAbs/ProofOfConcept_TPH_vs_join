@@ -7,8 +7,7 @@ namespace ProofOfConcept_TPH_vs_2_queries
     {
         public TphDbContext()
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+            
         }
 
         public DbSet<Entity> Entities { get; set; } = null!;
@@ -55,6 +54,6 @@ namespace ProofOfConcept_TPH_vs_2_queries
 
             await SaveChangesAsync();
         }
-    }
+    }//EntityFrameworkCore\Add-Migration test_tph -Context TphDbContext
 
 }
